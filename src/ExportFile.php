@@ -2,8 +2,8 @@
 
 namespace Esupl\ExportFile;
 
-use App\Models\QueuedFile;
 use Illuminate\Http\Request;
+use Esupl\ExportFile\Contracts\QueuedFile;
 use Illuminate\Foundation\Bus\PendingDispatch;
 use Esupl\ExportFile\Contracts\ExportFile as ExportFileContract;
 use Esupl\ExportFile\Traits\{HandlesValidation, HandlesAuthorization};

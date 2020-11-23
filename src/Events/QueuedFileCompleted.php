@@ -2,7 +2,7 @@
 
 namespace Esupl\ExportFile\Events;
 
-use App\Models\QueuedFile;
+use Esupl\ExportFile\Contracts\QueuedFile;
 use Illuminate\Foundation\Events\Dispatchable;
 
 /**
