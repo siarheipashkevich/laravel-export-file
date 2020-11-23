@@ -1,0 +1,57 @@
+{
+    "name": "esupl/laravel-export-file",
+    "description": "",
+    "keywords": [
+        "esupl",
+        "laravel",
+        "export-file",
+        "laravel-export-file",
+        "export",
+        "file",
+        "files",
+        "excel",
+        "pdf"
+    ],
+    "homepage": "https://github.com/esupl/laravel-export-file",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sergey Pashkevich",
+            "email": "siarheipashkveich@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Esupl\\ExportFile\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Esupl\\ExportFile\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Esupl\\ExportFile\\ExportFileServiceProvider"
+            ]
+        }
+    }
+}
