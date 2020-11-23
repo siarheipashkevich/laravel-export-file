@@ -12,7 +12,7 @@
         "excel",
         "pdf"
     ],
-    "homepage": "https://github.com/esupl/laravel-export-file",
+    "homepage": "https://github.com/siarheipashkevich/laravel-export-file",
     "license": "MIT",
     "type": "library",
     "authors": [
