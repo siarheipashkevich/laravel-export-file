@@ -10,7 +10,7 @@ namespace Esupl\ExportFile\Traits;
 trait HandlesValidation
 {
     /**
-     * Gets the validation rules that apply to the request.
+     * Gets the validation rules that apply to the export file.
      *
      * @return array
      */
