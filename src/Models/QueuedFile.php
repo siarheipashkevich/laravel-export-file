@@ -24,9 +24,19 @@ use Esupl\ExportFile\Contracts\QueuedFile as QueuedFileContract;
 class QueuedFile extends Model implements QueuedFileContract
 {
     /**
+     * The queued status.
+     */
+    public const QUEUED_STATUS = 'queued';
+
+    /**
      * The completed status.
      */
     public const COMPLETED_STATUS = 'completed';
+
+    /**
+     * The failed status.
+     */
+    public const FAILED_STATUS = 'failed';
 
     /**
      * The attributes that should be cast to native types.
@@ -55,16 +65,6 @@ class QueuedFile extends Model implements QueuedFileContract
                 $storage->delete($queuedFile->getDiskPath());
             }
         });
-    }
-
-    /**
-     * Gets the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'uuid';
     }
 
     /**

@@ -19,17 +19,17 @@ class ExportFileServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__ . '/../config/export_file.php' => config_path('export_file.php')
-        ], 'export-file-config');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/export_file.php' => config_path('export_file.php')
+            ], 'config');
+
             $this->commands([
                 Console\PurgeQueuedFiles::class,
             ]);
         }
-
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     /**

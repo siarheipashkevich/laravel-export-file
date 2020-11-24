@@ -12,7 +12,7 @@ return [
     'keep_all_queued_files_for_days' => 7,
 
     /*
-     *
+     * The queued file model.
      */
     'queued_file_model' => \Esupl\ExportFile\Models\QueuedFile::class,
 
