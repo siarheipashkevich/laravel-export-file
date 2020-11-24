@@ -83,17 +83,17 @@ class ExportFileService
      */
     protected function moveToQueue(Request $request, ExportFile $exportFile): QueuedFile
     {
-        $queuedFile = resolve(QueuedFile::class);
+        if (method_exists($exportFile, 'prepareQueuedFile')) {
+            $queuedFile = $exportFile->prepareQueuedFile();
+        } else {
+            $queuedFile = resolve(QueuedFile::class);
 
-        $queuedFile->fill([
-            'disk' => config('filesystems.default'),
-            'filename' => $exportFile->getFilename(),
-            'status' => 'queued',
-            'options' => ['request' => $request->input()],
-        ]);
-
-        if (method_exists($exportFile, 'beforeQueue')) {
-            $exportFile->beforeQueue($queuedFile);
+            $queuedFile->fill([
+                'disk' => config('filesystems.default'),
+                'filename' => $exportFile->getFilename(),
+                'status' => 'queued',
+                'options' => ['request' => $request->input()],
+            ]);
         }
 
         $queuedFile->save();
