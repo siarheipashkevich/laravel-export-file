@@ -19,5 +19,5 @@ return [
     /*
      * The directory where will be stored completed queued files.
      */
-    'queued_files_directories' => 'queued-files',
+    'queued_files_directory' => 'queued-files',
 ];
