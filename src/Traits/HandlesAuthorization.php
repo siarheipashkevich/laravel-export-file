@@ -2,7 +2,6 @@
 
 namespace Esupl\ExportFile\Traits;
 
-use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 
 /**
@@ -15,14 +14,12 @@ trait HandlesAuthorization
     /**
      * Determines if the request passes the authorization check.
      *
-     * @param Request $request
-     * @param $user
      * @return bool
      */
-    protected function passesAuthorization(Request $request, $user): bool
+    protected function passesAuthorization(): bool
     {
         if (method_exists($this, 'authorize')) {
-            return $this->authorize($request, $user);
+            return $this->authorize();
         }
 
         return true;

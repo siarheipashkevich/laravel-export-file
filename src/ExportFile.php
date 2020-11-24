@@ -57,7 +57,7 @@ abstract class ExportFile implements ExportFileContract
      */
     public function validate(): void
     {
-        if (!$this->passesAuthorization($this->request, $this->user)) {
+        if (!$this->passesAuthorization()) {
             $this->failedAuthorization();
         }
 
