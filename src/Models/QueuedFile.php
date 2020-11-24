@@ -100,7 +100,7 @@ class QueuedFile extends Model implements QueuedFileContract
      */
     public function markAsCompleted(): void
     {
-        $this->update(['status' => 'completed']);
+        $this->update(['status' => self::COMPLETED_STATUS]);
     }
 
     /**
@@ -110,6 +110,6 @@ class QueuedFile extends Model implements QueuedFileContract
      */
     public function markAsFailed(): void
     {
-        $this->update(['status' => 'failed']);
+        $this->update(['status' => self::FAILED_STATUS]);
     }
 }
