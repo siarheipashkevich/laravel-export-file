@@ -100,7 +100,7 @@ class ExportFileService
                     $queuedFile->markAsFailed();
 
                     QueuedFileFailed::dispatch($queuedFile);
-                })->dispatch();
+                })->onQueue('exports')->dispatch();
             }
 
             return $queuedFile;
