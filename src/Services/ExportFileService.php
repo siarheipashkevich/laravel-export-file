@@ -4,9 +4,10 @@ namespace Esupl\ExportFile\Services;
 
 use Throwable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
 use Esupl\ExportFile\ExportFileManager;
+use Esupl\ExportFile\Events\QueuedFileFailed;
 use Esupl\ExportFile\Jobs\FinalizeQueuedFile;
-use Illuminate\Foundation\Bus\PendingDispatch;
 use Esupl\ExportFile\Contracts\{QueuedFile, ExportFile};
 
 /**
@@ -98,12 +99,17 @@ class ExportFileService
 
         $queuedFile->save();
 
-        $pendingDispatch = $exportFile->moveToQueue($queuedFile);
+        $jobs = $exportFile->moveToQueue($queuedFile);
 
-        if ($pendingDispatch instanceof PendingDispatch) {
-            $pendingDispatch->chain([
+        if (!empty($jobs)) {
+            Bus::chain([
+                ...$jobs,
                 new FinalizeQueuedFile($queuedFile),
-            ]);
+            ])->catch(function () use ($queuedFile) {
+                $queuedFile->markAsFailed();
+
+                QueuedFileFailed::dispatch($queuedFile);
+            })->dispatch();
         }
 
         return $queuedFile;

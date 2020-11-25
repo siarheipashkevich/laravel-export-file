@@ -4,7 +4,6 @@ namespace Esupl\ExportFile;
 
 use Illuminate\Http\Request;
 use Esupl\ExportFile\Contracts\QueuedFile;
-use Illuminate\Foundation\Bus\PendingDispatch;
 use Esupl\ExportFile\Contracts\ExportFile as ExportFileContract;
 use Esupl\ExportFile\Traits\{HandlesValidation, HandlesAuthorization};
 
@@ -120,14 +119,14 @@ abstract class ExportFile implements ExportFileContract
     }
 
     /**
-     * Moves the export file to the queue.
+     * Gets the jobs which should be moved to the queue.
      *
      * @param QueuedFile $queuedFile
-     * @return PendingDispatch|null
+     * @return array
      */
-    public function moveToQueue(QueuedFile $queuedFile): ?PendingDispatch
+    public function moveToQueue(QueuedFile $queuedFile): array
     {
-        return null;
+        return [];
     }
 
     /**
