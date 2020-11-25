@@ -2,6 +2,7 @@
 
 namespace Esupl\ExportFile\Events;
 
+use Illuminate\Queue\SerializesModels;
 use Esupl\ExportFile\Contracts\QueuedFile;
 use Illuminate\Foundation\Events\Dispatchable;
 
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 class QueuedFileCompleted
 {
     use Dispatchable;
+    use SerializesModels;
 
     /**
      * @var QueuedFile
