@@ -2,8 +2,6 @@
 
 namespace Esupl\ExportFile\Contracts;
 
-use Esupl\ExportFile\Contracts\QueuedFile;
-
 /**
  * Interface ExportFile
  *
@@ -54,10 +52,17 @@ interface ExportFile
     public function shouldQueue(): bool;
 
     /**
-     * Gets the jobs which should be moved to the queue.
+     * Retrieves the queued file which will be used on the queued export file.
+     *
+     * @return QueuedFile
+     */
+    public function retrieveQueuedFile(): QueuedFile;
+
+    /**
+     * Gets the jobs available for export file through queue.
      *
      * @param QueuedFile $queuedFile
      * @return array
      */
-    public function moveToQueue(QueuedFile $queuedFile): array;
+    public function jobs(QueuedFile $queuedFile): array;
 }

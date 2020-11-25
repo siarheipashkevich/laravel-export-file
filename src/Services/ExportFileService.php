@@ -31,7 +31,7 @@ class ExportFileService
         $exportFile->initialize();
 
         if ($this->shouldQueue($request, $exportFile)) {
-            $queuedFile = $this->moveToQueue($request, $exportFile);
+            $queuedFile = DB::transaction(fn() => $this->createQueuedFileAndDispatchToQueue($exportFile));
 
             return [
                 'status' => 'queued',
@@ -66,45 +66,48 @@ class ExportFileService
     }
 
     /**
-     * Moves the export file to the queue.
+     * Creates a queued file for handling export file on the queue.
      *
-     * @param Request $request
      * @param ExportFile $exportFile
      * @return QueuedFile
      */
-    protected function moveToQueue(Request $request, ExportFile $exportFile): QueuedFile
+    protected function createQueuedFileAndDispatchToQueue(ExportFile $exportFile): QueuedFile
     {
-        if (method_exists($exportFile, 'prepareQueuedFile')) {
-            $queuedFile = $exportFile->prepareQueuedFile();
-        } else {
-            $queuedFile = resolve(QueuedFile::class);
+        $queuedFile = $this->retrieveQueuedFile($exportFile);
 
-            $queuedFile->fill([
-                'disk' => config('filesystems.default'),
-                'filename' => $exportFile->getFilename(),
-                'status' => QueuedFile::QUEUED_STATUS,
-                'options' => ['request' => $request->input()],
-            ]);
-        }
+        $jobs = $exportFile->jobs($queuedFile);
 
-        return DB::transaction(function () use ($exportFile, $queuedFile) {
-            $queuedFile->save();
+        array_push($jobs, new FinalizeQueuedFile($queuedFile));
 
-            $jobs = $exportFile->moveToQueue($queuedFile);
-
-            if (!empty($jobs)) {
-                Bus::chain([
-                    ...$jobs,
-                    new FinalizeQueuedFile($queuedFile),
-                ])->catch(function () use ($queuedFile) {
+        if (!empty($jobs)) {
+            Bus::chain($jobs)
+                ->catch(function () use ($queuedFile) {
                     $queuedFile->markAsFailed();
 
                     QueuedFileFailed::dispatch($queuedFile);
-                })->onQueue('exports')->dispatch();
-            }
+                })
+                ->onQueue('exports')
+                ->dispatch();
+        }
 
-            return $queuedFile;
-        });
+        return $queuedFile;
+    }
+
+    /**
+     * Retrieves the queued file for export file on the queue.
+     *
+     * @param ExportFile $exportFile
+     * @return QueuedFile
+     */
+    protected function retrieveQueuedFile(ExportFile $exportFile): QueuedFile
+    {
+        $queuedFile = $exportFile->retrieveQueuedFile();
+
+        if (!$queuedFile->exists) {
+            $queuedFile->save();
+        }
+
+        return $queuedFile;
     }
 
     /**

@@ -2,8 +2,12 @@
 
 namespace Esupl\ExportFile\Contracts;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Interface QueuedFile
+ *
+ * @mixin Model
  *
  * @package Esupl\ExportFile\Contracts
  */

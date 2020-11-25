@@ -119,12 +119,12 @@ abstract class ExportFile implements ExportFileContract
     }
 
     /**
-     * Gets the jobs which should be moved to the queue.
+     * Gets the jobs available for export file through queue.
      *
      * @param QueuedFile $queuedFile
      * @return array
      */
-    public function moveToQueue(QueuedFile $queuedFile): array
+    public function jobs(QueuedFile $queuedFile): array
     {
         return [];
     }
