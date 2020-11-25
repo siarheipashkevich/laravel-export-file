@@ -2,10 +2,9 @@
 
 namespace Esupl\ExportFile\Services;
 
-use Throwable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Bus;
 use Esupl\ExportFile\ExportFileManager;
+use Illuminate\Support\Facades\{DB, Bus};
 use Esupl\ExportFile\Events\QueuedFileFailed;
 use Esupl\ExportFile\Jobs\FinalizeQueuedFile;
 use Esupl\ExportFile\Contracts\{QueuedFile, ExportFile};
@@ -31,33 +30,24 @@ class ExportFileService
 
         $exportFile->initialize();
 
-        return rescue(function () use ($exportFile, $request) {
-            if ($this->shouldQueue($request, $exportFile)) {
-                $queuedFile = $this->moveToQueue($request, $exportFile);
-
-                return [
-                    'status' => 'queued',
-                    'params' => [
-                        'queued_file_id' => $queuedFile->id,
-                        'filename' => $queuedFile->filename,
-                    ],
-                ];
-            }
+        if ($this->shouldQueue($request, $exportFile)) {
+            $queuedFile = $this->moveToQueue($request, $exportFile);
 
             return [
-                'status' => 'ready',
+                'status' => 'queued',
                 'params' => [
-                    'url' => $exportFile->getDownloadUrl(),
+                    'queued_file_id' => $queuedFile->id,
+                    'filename' => $queuedFile->filename,
                 ],
             ];
-        }, function (Throwable $e) {
-            return [
-                'status' => 'failed',
-                'params' => [
-                    'message' => 'Oops. Something went wrong.',
-                ],
-            ];
-        });
+        }
+
+        return [
+            'status' => 'ready',
+            'params' => [
+                'url' => $exportFile->getDownloadUrl(),
+            ],
+        ];
     }
 
     /**
@@ -97,22 +87,24 @@ class ExportFileService
             ]);
         }
 
-        $queuedFile->save();
+        return DB::transaction(function () use ($exportFile, $queuedFile) {
+            $queuedFile->save();
 
-        $jobs = $exportFile->moveToQueue($queuedFile);
+            $jobs = $exportFile->moveToQueue($queuedFile);
 
-        if (!empty($jobs)) {
-            Bus::chain([
-                ...$jobs,
-                new FinalizeQueuedFile($queuedFile),
-            ])->catch(function () use ($queuedFile) {
-                $queuedFile->markAsFailed();
+            if (!empty($jobs)) {
+                Bus::chain([
+                    ...$jobs,
+                    new FinalizeQueuedFile($queuedFile),
+                ])->catch(function () use ($queuedFile) {
+                    $queuedFile->markAsFailed();
 
-                QueuedFileFailed::dispatch($queuedFile);
-            })->dispatch();
-        }
+                    QueuedFileFailed::dispatch($queuedFile);
+                })->dispatch();
+            }
 
-        return $queuedFile;
+            return $queuedFile;
+        });
     }
 
     /**
