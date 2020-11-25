@@ -1,0 +1,23 @@
+<?php
+
+namespace Esupl\ExportFile;
+
+/**
+ * Class ExportFileHelper
+ *
+ * @package Esupl\ExportFile
+ */
+class ExportFileHelper
+{
+    public const TYPE_FIELD = 'exf_type';
+    public const FORMAT_FIELD = 'exf_type';
+    public const MODE_FIELD = 'exf_type';
+
+    public const AUTO_MODE = 'auto';
+    public const DOWNLOAD_MODE = 'download';
+    public const QUEUE_MODE = 'queue';
+
+    public const READY_STATUS = 'ready';
+    public const QUEUED_STATUS = 'queued';
+    public const FAILED_STATUS = 'failed';
+}

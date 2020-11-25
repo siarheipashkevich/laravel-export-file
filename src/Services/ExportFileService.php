@@ -3,11 +3,11 @@
 namespace Esupl\ExportFile\Services;
 
 use Illuminate\Http\Request;
-use Esupl\ExportFile\ExportFileManager;
 use Illuminate\Support\Facades\{DB, Bus};
 use Esupl\ExportFile\Events\QueuedFileFailed;
 use Esupl\ExportFile\Jobs\FinalizeQueuedFile;
 use Esupl\ExportFile\Contracts\{QueuedFile, ExportFile};
+use Esupl\ExportFile\{ExportFileHelper, ExportFileManager};
 
 /**
  * Class ExportFileService
@@ -34,7 +34,7 @@ class ExportFileService
             $queuedFile = DB::transaction(fn() => $this->createQueuedFileAndDispatchToQueue($exportFile));
 
             return [
-                'status' => 'queued',
+                'status' => ExportFileHelper::QUEUED_STATUS,
                 'params' => [
                     'queued_file_id' => $queuedFile->id,
                     'filename' => $queuedFile->filename,
@@ -43,7 +43,7 @@ class ExportFileService
         }
 
         return [
-            'status' => 'ready',
+            'status' => ExportFileHelper::READY_STATUS,
             'params' => [
                 'url' => $exportFile->getDownloadUrl(),
             ],
@@ -119,16 +119,16 @@ class ExportFileService
      */
     protected function shouldQueue(Request $request, ExportFile $exportFile): bool
     {
-        if (config('export_file.force_mode') === 'download') {
+        if (config('export_file.force_mode') === ExportFileHelper::DOWNLOAD_MODE) {
             return false;
         }
 
-        $mode = $request->get('exf_mode', 'auto');
+        $mode = $request->get(ExportFileHelper::MODE_FIELD, ExportFileHelper::AUTO_MODE);
 
-        if ($mode === 'download') {
+        if ($mode === ExportFileHelper::DOWNLOAD_MODE) {
             return false;
         }
 
-        return $mode === 'queue' || $exportFile->shouldQueue();
+        return $mode === ExportFileHelper::QUEUE_MODE || $exportFile->shouldQueue();
     }
 }
