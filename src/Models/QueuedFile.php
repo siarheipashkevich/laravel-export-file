@@ -92,6 +92,15 @@ class QueuedFile extends Model implements QueuedFileContract
         return $this->status === self::COMPLETED_STATUS;
     }
 
+    /**
+     * Checks that the queued file is in a 'Failed' status.
+     *
+     * @return bool
+     */
+    public function isFailed(): bool
+    {
+        return $this->status === self::FAILED_STATUS;
+    }
 
     /**
      * Marks the queued file as completed.
