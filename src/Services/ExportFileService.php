@@ -82,7 +82,7 @@ class ExportFileService
             $queuedFile->fill([
                 'disk' => config('filesystems.default'),
                 'filename' => $exportFile->getFilename(),
-                'status' => 'queued',
+                'status' => QueuedFile::QUEUED_STATUS,
                 'options' => ['request' => $request->input()],
             ]);
         }
