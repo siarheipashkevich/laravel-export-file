@@ -99,11 +99,11 @@ abstract class ExportFile implements ExportFileContract
     }
 
     /**
-     * Gets the filename of the export file.
+     * Gets the displayable filename of the export file.
      *
      * @return string
      */
-    public function getFilename(): string
+    public function filename(): string
     {
         return '';
     }
