@@ -13,7 +13,7 @@ use Esupl\ExportFile\Events\QueuedFileCompleted;
  *
  * @package Esupl\ExportFile\Jobs
  */
-class FinalizeQueuedFile
+class FinalizeQueuedFile implements ShouldQueue
 {
     use Queueable;
     use SerializesModels;
