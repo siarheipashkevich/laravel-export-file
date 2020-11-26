@@ -15,7 +15,7 @@ use Esupl\ExportFile\Events\QueuedFileCompleted;
  */
 class FinalizeQueuedFile implements ShouldQueue
 {
-    use Queueable;
+//    use Queueable;
     use SerializesModels;
 
     /**
