@@ -77,10 +77,8 @@ class ExportFileService
 
         $jobs = $exportFile->jobs($queuedFile);
 
-        array_push($jobs, new FinalizeQueuedFile($queuedFile));
-
         if (!empty($jobs)) {
-            Bus::chain($jobs)
+            Bus::chain([...$jobs, new FinalizeQueuedFile($queuedFile)])
                 ->catch(function () use ($queuedFile) {
                     $queuedFile->markAsFailed();
 
@@ -88,6 +86,8 @@ class ExportFileService
                 })
                 ->onQueue('exports')
                 ->dispatch();
+        } elseif (!$queuedFile->fileExists()) {
+            $queuedFile->markAsFailed();
         }
 
         return $queuedFile;

@@ -38,11 +38,11 @@ interface ExportFile
     public function download();
 
     /**
-     * Gets the filename of the export file.
+     * Gets the displayable filename of the export file.
      *
      * @return string
      */
-    public function getFilename(): string;
+    public function filename(): string;
 
     /**
      * Checks if the export file should be queued.

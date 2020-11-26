@@ -5,6 +5,7 @@ namespace Esupl\ExportFile\Models;
 use Illuminate\Support\{Carbon, Str};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Esupl\ExportFile\Contracts\QueuedFile as QueuedFileContract;
 
 /**
@@ -63,6 +64,16 @@ class QueuedFile extends Model implements QueuedFileContract
     }
 
     /**
+     * Checks if the file exists on disk.
+     *
+     * @return bool
+     */
+    public function fileExists(): bool
+    {
+        return $this->storage()->exists($this->getDiskPath());
+    }
+
+    /**
      * Gets the download url for the queued file.
      *
      * @return string
@@ -73,10 +84,10 @@ class QueuedFile extends Model implements QueuedFileContract
             return '';
         }
 
-        if ($this->disk === 'spaces') {
-            $url = Storage::temporaryUrl($this->getDiskPath(), now()->addDay());
+        if (in_array($this->disk, ['public', 'local'])) {
+            $url = $this->storage()->url($this->getDiskPath());
         } else {
-            $url = Storage::url($this->getDiskPath());
+            $url = $this->storage()->temporaryUrl($this->getDiskPath(), now()->addDay());
         }
 
         return $url;
@@ -120,5 +131,15 @@ class QueuedFile extends Model implements QueuedFileContract
     public function markAsFailed(): void
     {
         $this->update(['status' => self::FAILED_STATUS]);
+    }
+
+    /**
+     * Gets the filesystem object for this file.
+     *
+     * @return Filesystem
+     */
+    protected function storage(): Filesystem
+    {
+        return Storage::disk($this->disk);
     }
 }
