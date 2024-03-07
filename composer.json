@@ -1,6 +1,6 @@
 {
     "name": "pashkevich/laravel-export-file",
-    "description": "A Laravel package for exporting files.",
+    "description": "A Laravel package for exporting files",
     "keywords": [
         "laravel",
         "export-file",
