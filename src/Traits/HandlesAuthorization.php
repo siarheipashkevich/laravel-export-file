@@ -1,14 +1,9 @@
 <?php
 
-namespace Esupl\ExportFile\Traits;
+namespace Pashkevich\ExportFile\Traits;
 
 use Illuminate\Auth\Access\AuthorizationException;
 
-/**
- * Trait HandlesAuthorization
- *
- * @package Esupl\ExportFile\Traits
- */
 trait HandlesAuthorization
 {
     /**

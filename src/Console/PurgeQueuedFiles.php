@@ -1,15 +1,10 @@
 <?php
 
-namespace Esupl\ExportFile\Console;
+namespace Pashkevich\ExportFile\Console;
 
 use Illuminate\Console\Command;
-use Esupl\ExportFile\Contracts\QueuedFile;
+use Pashkevich\ExportFile\Contracts\QueuedFile;
 
-/**
- * Class PurgeQueuedFiles
- *
- * @package Esupl\ExportFile\Console
- */
 class PurgeQueuedFiles extends Command
 {
     /**

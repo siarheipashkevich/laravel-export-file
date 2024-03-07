@@ -1,15 +1,10 @@
 <?php
 
-namespace Esupl\ExportFile;
+namespace Pashkevich\ExportFile;
 
 use Illuminate\Support\ServiceProvider;
-use Esupl\ExportFile\Contracts\QueuedFile;
+use Pashkevich\ExportFile\Contracts\QueuedFile;
 
-/**
- * Class ExportFileServiceProvider
- *
- * @package Esupl\ExportFile
- */
 class ExportFileServiceProvider extends ServiceProvider
 {
     /**

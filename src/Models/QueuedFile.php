@@ -1,16 +1,14 @@
 <?php
 
-namespace Esupl\ExportFile\Models;
+namespace Pashkevich\ExportFile\Models;
 
 use Illuminate\Support\{Carbon, Str};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use Esupl\ExportFile\Contracts\QueuedFile as QueuedFileContract;
+use Pashkevich\ExportFile\Contracts\QueuedFile as QueuedFileContract;
 
 /**
- * Class QueuedFile
- *
  * @property int $id
  * @property string $uuid
  * @property string $disk
@@ -19,8 +17,6 @@ use Esupl\ExportFile\Contracts\QueuedFile as QueuedFileContract;
  * @property string $status
  * @property array $options
  * @property Carbon $created_at
- *
- * @package Esupl\ExportFile\Models
  */
 class QueuedFile extends Model implements QueuedFileContract
 {

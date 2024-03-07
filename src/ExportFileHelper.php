@@ -1,12 +1,7 @@
 <?php
 
-namespace Esupl\ExportFile;
+namespace Pashkevich\ExportFile;
 
-/**
- * Class ExportFileHelper
- *
- * @package Esupl\ExportFile
- */
 class ExportFileHelper
 {
     public const TYPE_FIELD = 'exf_type';

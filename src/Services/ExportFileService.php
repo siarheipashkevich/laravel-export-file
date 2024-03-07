@@ -1,19 +1,14 @@
 <?php
 
-namespace Esupl\ExportFile\Services;
+namespace Pashkevich\ExportFile\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{DB, Bus};
-use Esupl\ExportFile\Events\QueuedFileFailed;
-use Esupl\ExportFile\Jobs\FinalizeQueuedFile;
-use Esupl\ExportFile\Contracts\{QueuedFile, ExportFile};
-use Esupl\ExportFile\{ExportFileHelper, ExportFileManager};
+use Pashkevich\ExportFile\Events\QueuedFileFailed;
+use Pashkevich\ExportFile\Jobs\FinalizeQueuedFile;
+use Pashkevich\ExportFile\Contracts\{QueuedFile, ExportFile};
+use Pashkevich\ExportFile\{ExportFileHelper, ExportFileManager};
 
-/**
- * Class ExportFileService
- *
- * @package Esupl\ExportFile\Services
- */
 class ExportFileService
 {
     /**
@@ -31,7 +26,7 @@ class ExportFileService
         $exportFile->initialize();
 
         if ($this->shouldQueue($request, $exportFile)) {
-            $queuedFile = DB::transaction(fn() => $this->createQueuedFileAndDispatchToQueue($exportFile));
+            $queuedFile = DB::transaction(fn () => $this->createQueuedFileAndDispatchToQueue($exportFile));
 
             return [
                 'status' => ExportFileHelper::QUEUED_STATUS,

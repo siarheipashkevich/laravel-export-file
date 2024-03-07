@@ -1,24 +1,14 @@
 <?php
 
-namespace Esupl\ExportFile\Tests;
+namespace Pashkevich\ExportFile\Tests;
 
-use Esupl\ExportFile\ExportFileServiceProvider;
-use Orchestra\Testbench\TestCase as BaseTestCase;
+use Pashkevich\ExportFile\ExportFileServiceProvider;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-class TestCase extends BaseTestCase
+class TestCase extends OrchestraTestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [ExportFileServiceProvider::class];
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        parent::getEnvironmentSetUp($app);
     }
 }

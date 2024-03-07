@@ -1,36 +1,22 @@
 <?php
 
-namespace Esupl\ExportFile;
+namespace Pashkevich\ExportFile;
 
 use Illuminate\Http\Request;
-use Esupl\ExportFile\Contracts\QueuedFile;
-use Esupl\ExportFile\Contracts\ExportFile as ExportFileContract;
-use Esupl\ExportFile\Traits\{HandlesValidation, HandlesAuthorization};
+use Pashkevich\ExportFile\Contracts\QueuedFile;
+use Pashkevich\ExportFile\Contracts\ExportFile as ExportFileContract;
+use Pashkevich\ExportFile\Traits\{HandlesValidation, HandlesAuthorization};
 
-/**
- * Class ExportFile
- *
- * @package Esupl\ExportFile
- */
 abstract class ExportFile implements ExportFileContract
 {
     use HandlesValidation;
     use HandlesAuthorization;
 
-    /**
-     * @var string
-     */
     private string $type;
 
-    /**
-     * @var Request
-     */
     protected Request $request;
 
-    /**
-     * @var mixed
-     */
-    protected $user;
+    protected mixed $user;
 
     /**
      * Base initialization of the export file.

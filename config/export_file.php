@@ -14,7 +14,7 @@ return [
     /*
      * The fully qualified class name of the queued file model.
      */
-    'queued_file_model' => \Esupl\ExportFile\Models\QueuedFile::class,
+    'queued_file_model' => \Pashkevich\ExportFile\Models\QueuedFile::class,
 
     /*
      * The directory where will be stored completed queued files.

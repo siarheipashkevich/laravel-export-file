@@ -1,22 +1,14 @@
 <?php
 
-namespace Esupl\ExportFile;
+namespace Pashkevich\ExportFile;
 
 use Illuminate\Http\Request;
 use InvalidArgumentException;
-use Esupl\ExportFile\Exceptions\NonexistentExportFileException;
-use Esupl\ExportFile\Contracts\ExportFile as ExportFileContract;
+use Pashkevich\ExportFile\Exceptions\NonexistentExportFileException;
+use Pashkevich\ExportFile\Contracts\ExportFile as ExportFileContract;
 
-/**
- * Class ExportFileManager
- *
- * @package Esupl\ExportFile
- */
 final class ExportFileManager
 {
-    /**
-     * @var array
-     */
     private static array $registry = [];
 
     /**

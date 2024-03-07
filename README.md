@@ -1,9 +1,9 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/esupl/laravel-phone-verification.svg?style=flat-square)](https://packagist.org/packages/esupl/laravel-phone-verification)
-[![Build Status](https://img.shields.io/travis/esupl/laravel-phone-verification/master.svg?style=flat-square)](https://travis-ci.org/esupl/laravel-phone-verification)
-[![Quality Score](https://img.shields.io/scrutinizer/g/esupl/laravel-phone-verification.svg?style=flat-square)](https://scrutinizer-ci.com/g/esupl/laravel-phone-verification)
-[![Total Downloads](https://img.shields.io/packagist/dt/esupl/laravel-phone-verification.svg?style=flat-square)](https://packagist.org/packages/esupl/laravel-phone-verification)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/siarheipashkevich/laravel-phone-verification.svg?style=flat-square)](https://packagist.org/packages/siarheipashkevich/laravel-phone-verification)
+[![Build Status](https://img.shields.io/travis/siarheipashkevich/laravel-phone-verification/master.svg?style=flat-square)](https://travis-ci.org/siarheipashkevich/laravel-phone-verification)
+[![Quality Score](https://img.shields.io/scrutinizer/g/siarheipashkevich/laravel-phone-verification.svg?style=flat-square)](https://scrutinizer-ci.com/g/siarheipashkevich/laravel-phone-verification)
+[![Total Downloads](https://img.shields.io/packagist/dt/siarheipashkevich/laravel-phone-verification.svg?style=flat-square)](https://packagist.org/packages/siarheipashkevich/laravel-export-file)
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
@@ -12,7 +12,7 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require esupl/laravel-export-file
+composer require pashkevich/laravel-export-file
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ If you discover any security related issues, please email siarheipashkveich@gmai
 
 ## Credits
 
-- [Sergey Pashkevich](https://github.com/esupl)
+- [Sergey Pashkevich](https://github.com/siarheipashkevich)
 - [All Contributors](../../contributors)
 
 ## License

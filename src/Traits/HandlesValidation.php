@@ -1,12 +1,7 @@
 <?php
 
-namespace Esupl\ExportFile\Traits;
+namespace Pashkevich\ExportFile\Traits;
 
-/**
- * Trait HandlesValidation
- *
- * @package Esupl\ExportFile\Traits
- */
 trait HandlesValidation
 {
     /**

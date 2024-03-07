@@ -1,14 +1,9 @@
 <?php
 
-namespace Esupl\ExportFile\Exceptions;
+namespace Pashkevich\ExportFile\Exceptions;
 
 use RuntimeException;
 
-/**
- * Class NonexistentExportFileException
- *
- * @package Esupl\ExportFile\Exceptions
- */
 class NonexistentExportFileException extends RuntimeException
 {
 }

@@ -1,12 +1,7 @@
 <?php
 
-namespace Esupl\ExportFile\Contracts;
+namespace Pashkevich\ExportFile\Contracts;
 
-/**
- * Interface ExportFile
- *
- * @package Esupl\ExportFile\Contracts
- */
 interface ExportFile
 {
     /**
