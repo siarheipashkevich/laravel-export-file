@@ -1,6 +1,5 @@
 # Laravel Export File
 
-<a href="https://github.com/siarheipashkevich/laravel-export-file/actions"><img src="https://github.com/siarheipashkevich/laravel-export-file/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/pashkevich/laravel-export-file"><img src="https://img.shields.io/packagist/dt/pashkevich/laravel-export-file" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/pashkevich/laravel-export-file"><img src="https://img.shields.io/packagist/v/pashkevich/laravel-export-file" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/pashkevich/laravel-export-file"><img src="https://img.shields.io/packagist/l/pashkevich/laravel-export-file" alt="License"></a>
