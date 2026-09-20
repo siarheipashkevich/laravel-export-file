@@ -37,4 +37,9 @@ interface QueuedFile
      * @return void
      */
     public function markAsFailed(): void;
+
+    /**
+     * Gets the file path on the storage disk.
+     */
+    public function getDiskPath(): string;
 }
