@@ -37,7 +37,7 @@ class QueuedFile extends Model implements QueuedFileContract
     protected static function booted(): void
     {
         static::creating(function (self $queuedFile) {
-            $queuedFile->uuid = (string)Str::uuid();
+            $queuedFile->uuid = Str::uuid()->toString();
         });
 
         static::deleted(function (QueuedFile $queuedFile) {
@@ -56,7 +56,7 @@ class QueuedFile extends Model implements QueuedFileContract
      */
     public function getDiskPath(): string
     {
-        return ltrim(rtrim((string)$this->directory, '/') . '/' . ltrim((string)$this->filename, '/'), '/');
+        return ltrim(rtrim($this->directory, '/') . '/' . ltrim($this->filename, '/'), '/');
     }
 
     /**
