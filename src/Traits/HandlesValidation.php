@@ -6,8 +6,6 @@ trait HandlesValidation
 {
     /**
      * Gets the validation rules that apply to the export file.
-     *
-     * @return array
      */
     protected function rules(): array
     {
@@ -16,8 +14,6 @@ trait HandlesValidation
 
     /**
      * Gets custom messages for validator errors.
-     *
-     * @return array
      */
     protected function messages(): array
     {
@@ -26,8 +22,6 @@ trait HandlesValidation
 
     /**
      * Gets custom attributes for validator errors.
-     *
-     * @return array
      */
     protected function attributes(): array
     {
@@ -36,8 +30,6 @@ trait HandlesValidation
 
     /**
      * Handles a passed validation attempt.
-     *
-     * @return void
      */
     protected function passedValidation(): void
     {

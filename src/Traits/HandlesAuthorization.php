@@ -8,8 +8,6 @@ trait HandlesAuthorization
 {
     /**
      * Determines if the request passes the authorization check.
-     *
-     * @return bool
      */
     protected function passesAuthorization(): bool
     {
@@ -22,9 +20,6 @@ trait HandlesAuthorization
 
     /**
      * Handles a failed authorization attempt.
-     *
-     * @return void
-     * @throws AuthorizationException
      */
     protected function failedAuthorization(): void
     {

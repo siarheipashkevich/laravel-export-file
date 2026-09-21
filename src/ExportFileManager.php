@@ -13,10 +13,6 @@ final class ExportFileManager
 
     /**
      * Registers the export file.
-     *
-     * @param string $type
-     * @param string $exportFileClass
-     * @return void
      */
     public static function register(string $type, string $exportFileClass): void
     {
@@ -46,9 +42,6 @@ final class ExportFileManager
 
     /**
      * Makes the export file by the given type.
-     *
-     * @param Request $request
-     * @return ExportFileContract
      */
     public static function make(Request $request): ExportFileContract
     {
@@ -65,8 +58,6 @@ final class ExportFileManager
 
     /**
      * Gets all registered types of the export files.
-     *
-     * @return array
      */
     public static function types(): array
     {

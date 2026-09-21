@@ -22,8 +22,6 @@ class QueuedFile extends Model implements QueuedFileContract
 {
     /**
      * The attributes that should be cast to native types.
-     *
-     * @var array
      */
     protected $casts = [
         'options' => 'array',
@@ -31,8 +29,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * The "booted" method of the model.
-     *
-     * @return void
      */
     protected static function booted(): void
     {
@@ -51,8 +47,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Get the path to the file relative to the root of the disk.
-     *
-     * @return string
      */
     public function getDiskPath(): string
     {
@@ -61,8 +55,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Checks if the file exists on disk.
-     *
-     * @return bool
      */
     public function fileExists(): bool
     {
@@ -71,8 +63,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Gets the download url for the queued file.
-     *
-     * @return string
      */
     public function getDownloadUrl(): string
     {
@@ -91,8 +81,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Checks that the queued file is in a 'Completed' status.
-     *
-     * @return bool
      */
     public function isCompleted(): bool
     {
@@ -101,8 +89,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Checks that the queued file is in a 'Failed' status.
-     *
-     * @return bool
      */
     public function isFailed(): bool
     {
@@ -111,8 +97,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Marks the queued file as completed.
-     *
-     * @return void
      */
     public function markAsCompleted(): void
     {
@@ -121,8 +105,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Marks the queued file as failed.
-     *
-     * @return void
      */
     public function markAsFailed(): void
     {
@@ -131,8 +113,6 @@ class QueuedFile extends Model implements QueuedFileContract
 
     /**
      * Gets the filesystem object for this file.
-     *
-     * @return Filesystem
      */
     protected function storage(): Filesystem
     {

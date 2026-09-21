@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateQueuedFilesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up(): void
     {
         Schema::create('queued_files', function (Blueprint $table) {
@@ -25,11 +20,6 @@ class CreateQueuedFilesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down(): void
     {
         Schema::dropIfExists('queued_files');

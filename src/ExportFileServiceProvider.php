@@ -7,11 +7,6 @@ use Pashkevich\ExportFile\Contracts\QueuedFile;
 
 class ExportFileServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstraps the application services.
-     *
-     * @return void
-     */
     public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
@@ -27,11 +22,6 @@ class ExportFileServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Registers any application services.
-     *
-     * @return void
-     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/export_file.php', 'export_file');

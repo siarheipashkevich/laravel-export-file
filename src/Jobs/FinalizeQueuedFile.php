@@ -15,11 +15,6 @@ class FinalizeQueuedFile implements ShouldQueue
 
     public function __construct(private readonly QueuedFile $queuedFile) {}
 
-    /**
-     * Executes the job.
-     *
-     * @return void
-     */
     public function handle(): void
     {
         $this->queuedFile->markAsCompleted();

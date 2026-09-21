@@ -20,10 +20,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Base initialization of the export file.
-     *
-     * @param Request $request
-     * @param string $type
-     * @return self
      */
     final public function init(Request $request, string $type): self
     {
@@ -37,8 +33,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Validates incoming request.
-     *
-     * @return void
      */
     public function validate(): void
     {
@@ -57,8 +51,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Initializes the export file.
-     *
-     * @return void
      */
     public function initialize(): void
     {
@@ -66,8 +58,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Gets the url for downloading export file.
-     *
-     * @return string
      */
     public function getDownloadUrl(): string
     {
@@ -76,8 +66,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Downloads the export file.
-     *
-     * @return mixed
      */
     public function download()
     {
@@ -86,8 +74,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Gets the displayable filename of the export file.
-     *
-     * @return string
      */
     public function filename(): string
     {
@@ -96,8 +82,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Checks if the export file should be queued.
-     *
-     * @return bool
      */
     public function shouldQueue(): bool
     {
@@ -106,9 +90,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Gets the jobs available for export file through queue.
-     *
-     * @param QueuedFile $queuedFile
-     * @return array
      */
     public function jobs(QueuedFile $queuedFile): array
     {
@@ -117,8 +98,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Gets the type of the export file.
-     *
-     * @return string
      */
     protected function getType(): string
     {
@@ -127,8 +106,6 @@ abstract class ExportFile implements ExportFileContract
 
     /**
      * Retrieves the authenticated user from request.
-     *
-     * @return mixed
      */
     protected function retrieveUser()
     {

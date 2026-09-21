@@ -11,12 +11,6 @@ use Pashkevich\ExportFile\{ExportFileHelper, ExportFileManager};
 
 class ExportFileService
 {
-    /**
-     * Exports the file.
-     *
-     * @param Request $request
-     * @return array
-     */
     public function export(Request $request): array
     {
         $exportFile = ExportFileManager::make($request);
@@ -45,12 +39,6 @@ class ExportFileService
         ];
     }
 
-    /**
-     * Downloads file.
-     *
-     * @param Request $request
-     * @return mixed
-     */
     public function download(Request $request)
     {
         $exportFile = ExportFileManager::make($request);
@@ -62,9 +50,6 @@ class ExportFileService
 
     /**
      * Creates a queued file for handling export file on the queue.
-     *
-     * @param ExportFile $exportFile
-     * @return QueuedFile
      */
     protected function createQueuedFileAndDispatchToQueue(ExportFile $exportFile): QueuedFile
     {
@@ -90,9 +75,6 @@ class ExportFileService
 
     /**
      * Retrieves the queued file for export file on the queue.
-     *
-     * @param ExportFile $exportFile
-     * @return QueuedFile
      */
     protected function retrieveQueuedFile(ExportFile $exportFile): QueuedFile
     {
@@ -107,10 +89,6 @@ class ExportFileService
 
     /**
      * Checks that the export file should be queued.
-     *
-     * @param Request $request
-     * @param ExportFile $exportFile
-     * @return bool
      */
     protected function shouldQueue(Request $request, ExportFile $exportFile): bool
     {
