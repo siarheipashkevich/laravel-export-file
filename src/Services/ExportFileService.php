@@ -96,7 +96,7 @@ class ExportFileService
             return false;
         }
 
-        $mode = $request->get(ExportFileHelper::MODE_FIELD, ExportFileHelper::AUTO_MODE);
+        $mode = $request->input(ExportFileHelper::MODE_FIELD, ExportFileHelper::AUTO_MODE);
 
         if ($mode === ExportFileHelper::DOWNLOAD_MODE) {
             return false;
